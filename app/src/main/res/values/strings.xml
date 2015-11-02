@@ -1,0 +1,26 @@
+<resources>
+    <string name="app_name">BarYapp</string>
+    
+    <string name="facebook_key_api">1677246999179854</string>
+
+    <string name="hello_world">Hello world!</string>
+    <string name="action_settings">Settings</string>
+    <string name="title_activity_registro">Registro</string>
+
+    <!--Textos vista registro-->
+    <string name="fecha_nac">Fecha de nacimiento</string>
+    <string name="nombre">Nombre</string>
+    <string name="contrasena">Contraseña</string>
+    <string name="title_activity_bar_odisco">BarODisco</string>
+    
+    <!--Textos vista bar o disco-->
+    <string name="bailar_o_tomar">Bailar o tomar y escuchar algo mientras hablas</string>
+    <string name="tipo_bebida">¿Qué tipo de bebida te gusta?</string>
+    <string name="tipo_musica">¿Qué música te gustaria escuchar?</string>
+    <string name="precios">¿Qué precios puedes encontrar?</string>
+    <string name="fumar_o_no">¿Fumar sin que te molesten?</string>
+    <string name="title_activity_bar_odiscoteca">BarODiscoteca</string>
+
+<!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+</resources>

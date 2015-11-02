@@ -1,0 +1,15 @@
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="com.baryapp.baryapp.Selects"
+    android:background="@color/fondo_principal">
+
+    <fragment
+        android:name="com.baryapp.baryapp.fragments.BarODiscoteca"
+        android:id="@+id/fragmentSelects"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent" />
+
+</RelativeLayout>

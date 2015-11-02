@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!--Dimensiones vista principal-->
+    <dimen name="alto_img_inicio">250dp</dimen>
+    <dimen name="ancho_img_inicio">150dp</dimen>
+    <dimen name="margen_sup_img_inicio">70dp</dimen>
+    <dimen name="margen_sup_btn_inicio">30dp</dimen>
+    <dimen name="margen_derecha_botones_inicio">15dp</dimen>
+
+    <!--Dimensiones vista registro-->
+    <dimen name="size_texto_registro">20sp</dimen>
+    <dimen name="padding_Edit_Text">5dp</dimen>
+    <dimen name="margen_sup_editText_registro">20dp</dimen>
+    <dimen name="margen_lat_editText_registro">10dp</dimen>
+
+    <!--Dimensiones vista selecciones-->
+    <dimen name="size_text_bar_o_disco">18sp</dimen>
+    <dimen name="margen_sup_texto_selects">15dp</dimen>
+    <dimen name="margen_sup_img_selects">5dp</dimen>
+    <dimen name="margen_sup_jazz">5dp</dimen>
+    <dimen name="margenes_electronica">15dp</dimen>
+</resources>

@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="fondo_principal">#21242A</color>
+    <color name="blanco">#FFFFFF</color>
+    <color name="status_bar">#21243A</color>
+</resources>

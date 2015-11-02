@@ -1,0 +1,86 @@
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="com.baryapp.baryapp.Registro"
+    android:background="@color/fondo_principal">
+
+    <ImageView
+        android:id="@+id/logo_principal"
+        android:layout_width="@dimen/ancho_img_inicio"
+        android:layout_height="@dimen/alto_img_inicio"
+        android:src="@drawable/btn_home"
+        android:layout_marginTop="@dimen/margen_sup_img_inicio"
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true" />
+
+    <LinearLayout
+        android:id="@+id/camposTexto"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:layout_below="@+id/logo_principal"
+        android:layout_centerHorizontal="true">
+
+        <EditText
+            android:id="@+id/fechaNacimiento"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@drawable/border_textos"
+            android:hint="@string/fecha_nac"
+            android:textColorHint="@color/blanco"
+            android:textColor="@color/blanco"
+            android:textSize="@dimen/size_texto_registro"
+            android:padding="@dimen/padding_Edit_Text"
+            android:layout_marginTop="@dimen/margen_sup_editText_registro"
+            android:layout_marginLeft="@dimen/margen_lat_editText_registro"
+            android:layout_marginStart="@dimen/margen_lat_editText_registro"
+            android:layout_marginRight="@dimen/margen_lat_editText_registro"
+            android:layout_marginEnd="@dimen/margen_lat_editText_registro"/>
+
+        <EditText
+            android:id="@+id/nombreUsuario"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@drawable/border_textos"
+            android:hint="@string/nombre"
+            android:inputType="textPersonName|textCapWords"
+            android:textColorHint="@color/blanco"
+            android:textColor="@color/blanco"
+            android:textSize="@dimen/size_texto_registro"
+            android:padding="@dimen/padding_Edit_Text"
+            android:layout_marginTop="@dimen/margen_sup_editText_registro"
+            android:layout_marginLeft="@dimen/margen_lat_editText_registro"
+            android:layout_marginStart="@dimen/margen_lat_editText_registro"
+            android:layout_marginRight="@dimen/margen_lat_editText_registro"
+            android:layout_marginEnd="@dimen/margen_lat_editText_registro"/>
+
+        <EditText
+            android:id="@+id/contrasena"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@drawable/border_textos"
+            android:hint="@string/contrasena"
+            android:inputType="textPassword"
+            android:textColorHint="@color/blanco"
+            android:textColor="@color/blanco"
+            android:textSize="@dimen/size_texto_registro"
+            android:padding="@dimen/padding_Edit_Text"
+            android:layout_marginTop="@dimen/margen_sup_editText_registro"
+            android:layout_marginLeft="@dimen/margen_lat_editText_registro"
+            android:layout_marginStart="@dimen/margen_lat_editText_registro"
+            android:layout_marginRight="@dimen/margen_lat_editText_registro"
+            android:layout_marginEnd="@dimen/margen_lat_editText_registro"/>
+
+    </LinearLayout>
+
+    <Button
+        android:id="@+id/continuar"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Continuar"
+        android:layout_below="@+id/camposTexto"
+        android:layout_centerHorizontal="true"/>
+
+</RelativeLayout>

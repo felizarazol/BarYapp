@@ -1,0 +1,49 @@
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".Inicio"
+    android:background="@color/fondo_principal">
+
+    <ImageView
+        android:id="@+id/logo_principal"
+        android:layout_width="@dimen/ancho_img_inicio"
+        android:layout_height="@dimen/alto_img_inicio"
+        android:src="@drawable/btn_home"
+        android:layout_marginTop="@dimen/margen_sup_img_inicio"
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true" />
+
+    <LinearLayout
+        android:id="@+id/botones"
+        android:orientation="horizontal"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/logo_principal"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="@dimen/margen_sup_btn_inicio"
+        android:layout_marginBottom="@dimen/margen_sup_btn_inicio">
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/btn_entrar"
+            android:src="@drawable/btn_entra"
+            android:layout_marginRight="@dimen/margen_derecha_botones_inicio"/>
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/btn_registrate"
+            android:src="@drawable/btn_registrate"/>
+    </LinearLayout>
+
+    <com.facebook.login.widget.LoginButton
+        android:id="@+id/login_button"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerInParent="true"
+        android:layout_below="@+id/botones"/>
+
+</RelativeLayout>
