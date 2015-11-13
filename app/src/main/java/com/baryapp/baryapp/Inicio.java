@@ -2,13 +2,8 @@ package com.baryapp.baryapp;
 
 import android.app.Activity;
 import android.content.Intent;
-import android.content.pm.PackageInfo;
-import android.content.pm.PackageManager;
-import android.content.pm.Signature;
 import android.os.Build;
-import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
-import android.util.Base64;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -26,13 +21,10 @@ import com.facebook.GraphRequest;
 import com.facebook.GraphResponse;
 import com.facebook.login.LoginResult;
 import com.facebook.login.widget.LoginButton;
-import com.facebook.share.widget.ShareButton;
 
 import org.json.JSONException;
 import org.json.JSONObject;
 
-import java.security.MessageDigest;
-import java.security.NoSuchAlgorithmException;
 import java.util.Arrays;
 
 
@@ -71,6 +63,7 @@ public class Inicio extends Activity implements View.OnClickListener{
         registro = (ImageView)findViewById(R.id.btn_registrate);
         loginFacebook = (LoginButton)findViewById(R.id.login_button);
         registro.setOnClickListener(this);
+        entrar.setOnClickListener(this);
         loginFacebook.setReadPermissions(Arrays.asList("public_profile, email, user_birthday"));
         callbackManager = CallbackManager.Factory.create();
         loginFacebook.registerCallback(callbackManager, new FacebookCallback<LoginResult>() {
@@ -149,6 +142,10 @@ public class Inicio extends Activity implements View.OnClickListener{
                 finish();
                 Intent registro = new Intent(Inicio.this, Registro.class);
                 startActivity(registro);
+            case R.id.btn_entrar:
+                finish();
+                Intent entrar = new Intent(Inicio.this, MapsActivity.class);
+                startActivity(entrar);
             break;
         }
 

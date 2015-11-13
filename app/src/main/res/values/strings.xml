@@ -23,4 +23,8 @@
 
 <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
+
+
+    <string name="error_localization_detail">Debe activar los servicios de localización</string>
+    <string name="title_activity_maps">maps</string>
 </resources>
