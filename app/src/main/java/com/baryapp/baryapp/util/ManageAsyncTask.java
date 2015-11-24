@@ -5,10 +5,21 @@ import android.content.Context;
 import android.location.Location;
 import android.location.LocationManager;
 import android.os.AsyncTask;
+import android.util.Log;
 
 import com.baryapp.baryapp.MapsActivity;
 
+import org.apache.http.HttpResponse;
+import org.apache.http.client.ClientProtocolException;
+import org.apache.http.client.HttpClient;
+import org.apache.http.client.methods.HttpGet;
+import org.apache.http.impl.client.DefaultHttpClient;
 import org.w3c.dom.Document;
+
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStream;
+import java.io.InputStreamReader;
 
 /*import org.apache.http.HttpResponse;
 import org.apache.http.NameValuePair;
@@ -34,12 +45,12 @@ public class ManageAsyncTask {
 
     }
 
-  /*  public void sendGet(String url) {
+    public void sendGet(String url) {
         SendHttpGet t = new SendHttpGet();
         String params = new String(url);
         t.execute(params);
     }
-
+/*
     public void updateDB(String url) {
         SendHttpNewJson t = new SendHttpNewJson();
         String params = new String(url);
@@ -69,7 +80,7 @@ public class ManageAsyncTask {
         t.execute(params);
     }*/
 
-    /*private class SendHttpGet extends AsyncTask<String, Void, String> {
+    private class SendHttpGet extends AsyncTask<String, Void, String> {
 
         @Override
         protected String doInBackground(String... params) {
@@ -81,70 +92,71 @@ public class ManageAsyncTask {
         @Override
         protected void onPostExecute(String result) {
             if (result != null) {
-                if (name.equals("ConfigurationActivity")) {
-                    ((ConfigurationActivity) context).processingResult(result);
-                } else if (name.equals("DetailActivity")) {
-                    ((DetailActivity) context).processingResult(result);
-                } else if (name.equals("ListActivity")) {
-                    ((ListActivity) context).processingResultCitaProx(result);
-                    ((ListActivity) context).setIsFinish(true);
-                } else if (name.equals("ListActivityDef")) {
-                    ((ListActivity) context).processingResultSortDefault(result);
-                    ((ListActivity) context).setIsFinishDefault(true);
-                } else if (name.equals("ListMultiActivity")) {
-                    ((ListMultiPrestActivity) context).processingResultCitaProx(result);
-                    ((ListMultiPrestActivity) context).setIsFinish(true);
-                } else if (name.equals("ListMultiActivityDef")) {
-                    ((ListMultiPrestActivity) context).processingResultSortDefault(result);
-                    ((ListMultiPrestActivity) context).setIsFinishDefault(true);
-                } else if (name.equals("SplashActivity")) {
-                    ((SplashActivity) context).processingResult(result);
-                } else if (name.equals("YoPrestadorActivityLogin")) {
-                    ((YoPrestadorActivity) context).processingResult(result);
-                    ((YoPrestadorActivity) context).progressBar.cancel();
-                } else if (name.equals("YoPrestadorActivityPerfil")) {
-                    ((YoPrestadorActivity) context).processingResultPerfil(result);
-                    ((YoPrestadorActivity) context).progressBar.cancel();
-                }else if (name.equals("MapsActivity")) {
+//                if (name.equals("ConfigurationActivity")) {
+//                    ((ConfigurationActivity) context).processingResult(result);
+//                } else if (name.equals("DetailActivity")) {
+//                    ((DetailActivity) context).processingResult(result);
+//                } else if (name.equals("ListActivity")) {
+//                    ((ListActivity) context).processingResultCitaProx(result);
+//                    ((ListActivity) context).setIsFinish(true);
+//                } else if (name.equals("ListActivityDef")) {
+//                    ((ListActivity) context).processingResultSortDefault(result);
+//                    ((ListActivity) context).setIsFinishDefault(true);
+//                } else if (name.equals("ListMultiActivity")) {
+//                    ((ListMultiPrestActivity) context).processingResultCitaProx(result);
+//                    ((ListMultiPrestActivity) context).setIsFinish(true);
+//                } else if (name.equals("ListMultiActivityDef")) {
+//                    ((ListMultiPrestActivity) context).processingResultSortDefault(result);
+//                    ((ListMultiPrestActivity) context).setIsFinishDefault(true);
+//                } else if (name.equals("SplashActivity")) {
+//                    ((SplashActivity) context).processingResult(result);
+//                } else if (name.equals("YoPrestadorActivityLogin")) {
+//                    ((YoPrestadorActivity) context).processingResult(result);
+//                    ((YoPrestadorActivity) context).progressBar.cancel();
+//                } else if (name.equals("YoPrestadorActivityPerfil")) {
+//                    ((YoPrestadorActivity) context).processingResultPerfil(result);
+//                    ((YoPrestadorActivity) context).progressBar.cancel();
+//                }else
+            if (name.equals("MapsActivity")) {
                     ((MapsActivity) context).processingResult(result);
-                }
+            }
             } else {
-                if (name.equals("ListActivity")) {
-                    ((ListActivity) context).setIsFinish(true);
-                }else if (name.equals("ListActivityDef")) {
-                    ((ListActivity) context).setIsFinishDefault(true);
-                }else if (name.equals("ListMultiActivity")) {
-                    ((ListActivity) context).setIsFinish(true);
-                } else if (name.equals("ListMultiActivityDef")) {
-                    ((ListActivity) context).setIsFinishDefault(true);
-                } else if (name.equals("YoPrestadorActivityLogin")) {
-                    AlertDialog.Builder alertDialogBuilder = new AlertDialog.Builder(context);
-                    alertDialogBuilder.setTitle(R.string.app_name);
-                    alertDialogBuilder.setMessage(R.string.text_error_envio);
-                    alertDialogBuilder.setPositiveButton("Aceptar",
-                            new DialogInterface.OnClickListener() {
-                                public void onClick(DialogInterface dialog, int id) {
-                                }
-                            });
-                    AlertDialog alertDialog = alertDialogBuilder.create();
-                    alertDialog.show();
-
-                    ((YoPrestadorActivity) context).progressBar.cancel();
-
-                } else if (name.equals("YoPrestadorActivityPerfil")) {
-                    AlertDialog.Builder alertDialogBuilder = new AlertDialog.Builder(context);
-                    alertDialogBuilder.setTitle(R.string.app_name);
-                    alertDialogBuilder.setMessage(R.string.text_error_envio);
-                    alertDialogBuilder.setPositiveButton("Aceptar",
-                            new DialogInterface.OnClickListener() {
-                                public void onClick(DialogInterface dialog, int id) {
-                                }
-                            });
-                    AlertDialog alertDialog = alertDialogBuilder.create();
-                    alertDialog.show();
-
-                    ((YoPrestadorActivity) context).progressBar.cancel();
-                }
+//                if (name.equals("ListActivity")) {
+//                    ((ListActivity) context).setIsFinish(true);
+//                }else if (name.equals("ListActivityDef")) {
+//                    ((ListActivity) context).setIsFinishDefault(true);
+//                }else if (name.equals("ListMultiActivity")) {
+//                    ((ListActivity) context).setIsFinish(true);
+//                } else if (name.equals("ListMultiActivityDef")) {
+//                    ((ListActivity) context).setIsFinishDefault(true);
+//                } else if (name.equals("YoPrestadorActivityLogin")) {
+//                    AlertDialog.Builder alertDialogBuilder = new AlertDialog.Builder(context);
+//                    alertDialogBuilder.setTitle(R.string.app_name);
+//                    alertDialogBuilder.setMessage(R.string.text_error_envio);
+//                    alertDialogBuilder.setPositiveButton("Aceptar",
+//                            new DialogInterface.OnClickListener() {
+//                                public void onClick(DialogInterface dialog, int id) {
+//                                }
+//                            });
+//                    AlertDialog alertDialog = alertDialogBuilder.create();
+//                    alertDialog.show();
+//
+//                    ((YoPrestadorActivity) context).progressBar.cancel();
+//
+//                } else if (name.equals("YoPrestadorActivityPerfil")) {
+//                    AlertDialog.Builder alertDialogBuilder = new AlertDialog.Builder(context);
+//                    alertDialogBuilder.setTitle(R.string.app_name);
+//                    alertDialogBuilder.setMessage(R.string.text_error_envio);
+//                    alertDialogBuilder.setPositiveButton("Aceptar",
+//                            new DialogInterface.OnClickListener() {
+//                                public void onClick(DialogInterface dialog, int id) {
+//                                }
+//                            });
+//                    AlertDialog alertDialog = alertDialogBuilder.create();
+//                    alertDialog.show();
+//
+//                    ((YoPrestadorActivity) context).progressBar.cancel();
+//                }
             }
         }
     }
@@ -195,7 +207,7 @@ public class ManageAsyncTask {
 
     }
 
-
+/*
     private class SendHttpNewJson extends AsyncTask<String, String, String> {
 
         @Override

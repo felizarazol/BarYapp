@@ -3,6 +3,7 @@ package com.baryapp.baryapp;
 import android.content.Context;
 import android.content.Intent;
 import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.graphics.Canvas;
 import android.graphics.Color;
 import android.graphics.Paint;
@@ -14,6 +15,7 @@ import android.os.Handler;
 import android.support.v4.app.FragmentActivity;
 import android.util.Log;
 import android.view.View;
+import android.widget.Button;
 import android.widget.Toast;
 
 import com.baryapp.baryapp.util.GMapV2Direction;
@@ -83,18 +85,18 @@ public class MapsActivity extends FragmentActivity implements GoogleMap.OnInfoWi
                     LocationManager locationManager = (LocationManager) getSystemService(Context.LOCATION_SERVICE);
                     boolean isNetworkEnabled = locationManager.isProviderEnabled(LocationManager.NETWORK_PROVIDER);
                     boolean isGPSEnabled = locationManager.isProviderEnabled(LocationManager.GPS_PROVIDER);
-                    if(!isGPSEnabled && !isNetworkEnabled) {
+                    if (!isGPSEnabled && !isNetworkEnabled) {
                         Toast.makeText(MapsActivity.this, getResources().getText(R.string.error_localization_detail), Toast.LENGTH_SHORT).show();
                     }
                     return false;
                 }
             });
 
-//            imageServ = BitmapFactory.decodeResource(getResources(), manageImage.imageServiceMaps(idServ));
+            imageServ = BitmapFactory.decodeResource(getResources(), R.drawable.bar);
 
-//            pin= BitmapFactory.decodeResource(getResources(), R.drawable.pin);
+            pin = BitmapFactory.decodeResource(getResources(), R.drawable.pin);
 
-//            bDIcon = combineImages(pin, imageServ);
+            bDIcon = combineImages(pin, imageServ);
 
             LocationManager locationManager = (LocationManager) getSystemService(Context.LOCATION_SERVICE);
             //getting GPS status
@@ -203,7 +205,7 @@ public class MapsActivity extends FragmentActivity implements GoogleMap.OnInfoWi
     }
 
 
-    private void locationSleep(final Marker marker) {
+    private void locationSleep() {
 
         if (myLocation == null) {
             if (k < 20) {
@@ -214,23 +216,24 @@ public class MapsActivity extends FragmentActivity implements GoogleMap.OnInfoWi
                     public void run() {
                         k++;
                         myLocation = map.getMyLocation();
-                        locationSleep(marker);
+                        locationSleep();
                         festHandler.removeCallbacks(this);
                     }
                 }, 1000);
             }
-        } else {
-            LatLng myLatLng = new LatLng(myLocation.getLatitude(), myLocation.getLongitude());
-            String url = md.getDocument(myLatLng, marker.getPosition(), GMapV2Direction.MODE_DRIVING);
-            ManageAsyncTask manageAT = new ManageAsyncTask(this, "MapsActivity");
-            String params = new String(url);
-            manageAT.sendRoute(params);
-            boundCamera();
         }
+//        else {
+//            LatLng myLatLng = new LatLng(myLocation.getLatitude(), myLocation.getLongitude());
+//            String url = md.getDocument(myLatLng, marker.getPosition(), GMapV2Direction.MODE_DRIVING);
+//            ManageAsyncTask manageAT = new ManageAsyncTask(this, "MapsActivity");
+//            String params = new String(url);
+//            manageAT.sendRoute(params);
+//            boundCamera();
+//        }
 
     }
 
-//    public void btn_ubicacion(View view) {
+    //    public void btn_ubicacion(View view) {
 //
 //        LocationManager locationManager = (LocationManager) getSystemService(Context.LOCATION_SERVICE);
 //        boolean isGPSEnabled = locationManager.isProviderEnabled(LocationManager.GPS_PROVIDER);
@@ -253,47 +256,56 @@ public class MapsActivity extends FragmentActivity implements GoogleMap.OnInfoWi
 //        }
 //    }
 //
-//    public void btn_parqueadero(View view) {
-//        if (map != null) {
-//            if (!inte.getExtras().getBoolean("list")) {
-//                if (!((Button) view).isSelected()) {
-//                    ((Button) view).setBackgroundResource(R.drawable.parqueaderodown);
-//
-//                    if (markers.isEmpty()) {
-//
-//                        ListaPrestadorEntrada prestador = getIntent().getExtras().getParcelable("prestador");
-//                        LatLng pointLatLong = new LatLng(Double.parseDouble(prestador.getLatitud()), Double.parseDouble(prestador.getLongitud()));
-//                        String url = UrlWS.urlParking(prestador.getLatitud(), prestador.getLongitud());
-//
-//
-//                        ManageAsyncTask manageAT = new ManageAsyncTask(this, "MapsActivity");
-//
-//                        manageAT.sendGet(url);
-//
-//                    } else {
-//                        markersRec = new ArrayList<Marker>();
-//                        for (int i = 0; i < markers.size(); i++) {
-//
-//                            Marker marker = map.addMarker(new MarkerOptions().position(markers.get(i).getPosition()).title(markers.get(i).getTitle()).snippet("parking")
-//                                    .icon(BitmapDescriptorFactory.fromResource(R.drawable.pinpark))
-//                                    .anchor(0.5f, 0.5f));
-//                            markersRec.add(marker);
-//                        }
-//                        markers = markersRec;
-//                    }
-//                    view.setSelected(true);
-//                    moveCam();
-//                } else {
-//                    ((Button) view).setBackgroundResource(R.drawable.parqueaderonormal);
-//                    markersRec = markers;
-//                    for (int i = 0; i < markersRec.size(); i++) {
-//                        markersRec.get(i).remove();
-//                    }
-//                    view.setSelected(false);
-//                }
-//            }
-//        }
-//    }
+    public void btnPlaces(View view) {
+        if (map != null) {
+
+            if (!((Button) view).isSelected()) {
+
+
+                if (markers.isEmpty()) {
+
+                 /*   LatLng pointLatLong = new LatLng(Double.parseDouble("4.6106202"), Double.parseDouble("-74.1793643"));
+                    final Marker marker = map.addMarker(new MarkerOptions().position(pointLatLong).title("andres").snippet("aqui")
+                            .icon(bDIcon)
+                            .anchor(0.05f, 0.05f));
+*/
+                    if (myLocation == null) {
+
+                        locationSleep();
+                    }
+
+
+                    String url = createUrl(myLocation.getLatitude()+"",myLocation.getLongitude()+"");
+
+
+                    ManageAsyncTask manageAT = new ManageAsyncTask(this, "MapsActivity");
+
+                    manageAT.sendGet(url);
+
+                } else {
+                    markersRec = new ArrayList<Marker>();
+                    for (int i = 0; i < markers.size(); i++) {
+
+                        Marker marker = map.addMarker(new MarkerOptions().position(markers.get(i).getPosition()).title(markers.get(i).getTitle()).snippet("parking")
+                                .icon(bDIcon)
+                                .anchor(0.5f, 0.5f));
+                        markersRec.add(marker);
+                    }
+                    markers = markersRec;
+                }
+                view.setSelected(true);
+             //   moveCam();
+            } else {
+              //  ((Button) view).setBackgroundResource(R.drawable.parqueaderonormal);
+                markersRec = markers;
+                for (int i = 0; i < markersRec.size(); i++) {
+                    markersRec.get(i).remove();
+                }
+                view.setSelected(false);
+            }
+
+        }
+    }
 
     @Override
     public void onInfoWindowClick(Marker marker) {
@@ -376,7 +388,7 @@ public class MapsActivity extends FragmentActivity implements GoogleMap.OnInfoWi
         }
     }
 
-    public void postRoute(Document doc){
+    public void postRoute(Document doc) {
         ArrayList<LatLng> directionPoint = md.getDirection(doc);
         PolylineOptions rectLine = new PolylineOptions().width(7).color(
                 Color.argb(255, 0, 151, 207));
@@ -408,8 +420,8 @@ public class MapsActivity extends FragmentActivity implements GoogleMap.OnInfoWi
                 name = subResult.getString("name");
                 vicinity = subResult.getString("vicinity");
                 LatLng pointLatLong = new LatLng(Double.parseDouble(lat), Double.parseDouble(lng));
-                Marker marker = map.addMarker(new MarkerOptions().position(pointLatLong).title(name).snippet("parking")
-                        //            .icon(BitmapDescriptorFactory.fromResource(R.drawable.pinpark))
+                Marker marker = map.addMarker(new MarkerOptions().position(pointLatLong).title(name).snippet(vicinity)
+                        .icon(bDIcon)
                         .anchor(0.5f, 0.5f));
                 markers.add(marker);
             }
@@ -468,8 +480,8 @@ public class MapsActivity extends FragmentActivity implements GoogleMap.OnInfoWi
     public BitmapDescriptor combineImages(Bitmap bmp1, Bitmap bmp2) {
         Bitmap bmOverlay = Bitmap.createBitmap(bmp1.getWidth(), bmp1.getHeight(), bmp2.getConfig());
 
-        float left = (bmp1.getWidth()/2) - (bmp2.getWidth() / 2);
-        float top = (bmp1.getHeight()*3/8) - (bmp2.getHeight() / 2);
+        float left = (bmp1.getWidth() / 2) - (bmp2.getWidth() / 2);
+        float top = (bmp1.getHeight() * 3 / 8) - (bmp2.getHeight() / 2);
 
         Canvas canvas = new Canvas(bmOverlay);
         canvas.drawBitmap(bmp1, 0, 0, null);
@@ -485,17 +497,17 @@ public class MapsActivity extends FragmentActivity implements GoogleMap.OnInfoWi
 
         float scale = getResources().getDisplayMetrics().density;
 
-        int size = (int)(26*scale);
-        if(text.length()>2){
-            text="99+";
-            left = (bmp.getWidth()* 10 / 40);
-            size=(int)(20*scale);
-        }else if(text.length()==2){
-            left = (bmp.getWidth()* 21 / 80);
-            size = (int)(26*scale);
-        }else{
-            left = (bmp.getWidth()* 31 / 80);
-            size = (int)(26*scale);
+        int size = (int) (26 * scale);
+        if (text.length() > 2) {
+            text = "99+";
+            left = (bmp.getWidth() * 10 / 40);
+            size = (int) (20 * scale);
+        } else if (text.length() == 2) {
+            left = (bmp.getWidth() * 21 / 80);
+            size = (int) (26 * scale);
+        } else {
+            left = (bmp.getWidth() * 31 / 80);
+            size = (int) (26 * scale);
         }
 
         Paint paint = new Paint();
@@ -513,9 +525,21 @@ public class MapsActivity extends FragmentActivity implements GoogleMap.OnInfoWi
 
         return BitmapDescriptorFactory.fromBitmap(bmOverlay);
     }
+
     @Override
     public void onBackPressed() {
         super.onBackPressed();
         finish();
     }
+
+    public static String createUrl(String lat, String lon) {
+        String createUrl = "https://maps.googleapis.com/maps/api/place/search/json?location=" +
+                lat + "," + lon +
+                "&radius=900&sensor=false&key=AIzaSyCC_PJiHPmkOgL2IzgenE6OvlF2FO2wKYg&types=bar";
+
+
+        return createUrl;
+    }
+
+
 }
