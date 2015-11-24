@@ -27,4 +27,5 @@
 
     <string name="error_localization_detail">Debe activar los servicios de localización</string>
     <string name="title_activity_maps">maps</string>
+    <string name="title_activity_splash">Splash</string>
 </resources>
