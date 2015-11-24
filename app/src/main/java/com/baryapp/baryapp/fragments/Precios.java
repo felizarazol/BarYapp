@@ -1,6 +1,7 @@
 package com.baryapp.baryapp.fragments;
 
 import android.app.FragmentTransaction;
+import android.media.Image;
 import android.os.Bundle;
 import android.app.Fragment;
 import android.view.LayoutInflater;
@@ -13,6 +14,9 @@ import com.baryapp.baryapp.R;
 public class Precios extends Fragment implements View.OnClickListener{
 
     ImageView next;
+    ImageView bajoP;
+    ImageView medioP;
+    ImageView altoP;
 
     public Precios() {
         // Required empty public constructor
@@ -24,7 +28,13 @@ public class Precios extends Fragment implements View.OnClickListener{
         // Inflate the layout for this fragment
         View v =  inflater.inflate(R.layout.fragment_precios, container, false);
         next = (ImageView)v.findViewById(R.id.next);
+        bajoP=(ImageView)v.findViewById(R.id.btBajo);
+        medioP=(ImageView)v.findViewById(R.id.btMedio);
+        altoP=(ImageView)v.findViewById(R.id.btAlto);
         next.setOnClickListener(this);
+        bajoP.setOnClickListener(this);
+        medioP.setOnClickListener(this);
+        altoP.setOnClickListener(this);
         return v;
     }
 
