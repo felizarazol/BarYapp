@@ -13,6 +13,7 @@ import android.view.WindowManager;
 import android.widget.ImageView;
 import android.widget.Toast;
 
+import com.baryapp.baryapp.databases.DatabaseBarYapp;
 import com.facebook.CallbackManager;
 import com.facebook.FacebookCallback;
 import com.facebook.FacebookException;
@@ -34,6 +35,8 @@ public class Inicio extends Activity implements View.OnClickListener{
     private ImageView registro;
     private LoginButton loginFacebook;
     private CallbackManager callbackManager;
+
+    private DatabaseBarYapp db;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -79,6 +82,12 @@ public class Inicio extends Activity implements View.OnClickListener{
                                 // Application code
                                 Log.v("LoginActivity", response.toString());
                                 try {
+                                    //Registro en la base de datos
+                                    db.abrir();
+                                    //Inicialmente solo se llenan dos campos, que son el nombre de usuario
+                                    //y el id, que son recuperados por medio de la API de Facebook
+                                    db.insertUsuario(object.getString("id"), object.getString("name"));
+                                    db.cerrar();
                                     Toast.makeText(Inicio.this, "Bienvenido " + object.getString("name"),
                                             Toast.LENGTH_LONG).show();
                                     //Se llama a la siguiente vista
@@ -87,7 +96,10 @@ public class Inicio extends Activity implements View.OnClickListener{
                                     Intent select = new Intent(Inicio.this, Selects.class);
                                     startActivity(select);
                                 } catch (JSONException e) {
-                                    e.printStackTrace();
+                                    Log.e("JSONError", e.toString());
+                                }
+                                catch (Exception e){
+                                    Log.e("ErrorBD", e.toString());
                                 }
                             }
                         });

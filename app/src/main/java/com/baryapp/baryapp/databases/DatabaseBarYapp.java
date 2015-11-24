@@ -55,8 +55,8 @@ public class DatabaseBarYapp extends SQLiteOpenHelper{
         db.close();
     }
 
-    public long insertUsuario(String id_user_facebook, String nombre, String bar_o_discoteca,
-                              String bebida, String fumar, String musica, String precio){
+    public long insertUsuario (String id_user_facebook, String nombre, String bar_o_discoteca,
+                              String bebida, String fumar, String musica, String precio) throws Exception{
         ContentValues valores = new ContentValues();
         valores.put("id_user_facebook", id_user_facebook);
         valores.put("nombre", nombre);
@@ -67,6 +67,12 @@ public class DatabaseBarYapp extends SQLiteOpenHelper{
         valores.put("precio", precio);
 
         return db.insert("profile_user", null, valores);
+    }
+
+    public long insertUsuario(String id_user_facebook, String nombre)throws Exception{
+
+        return insertUsuario(id_user_facebook, nombre, null, null, null, null, null);
+
     }
 
     /*public long updateBarODiscoteca(){
