@@ -11,6 +11,7 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 
 import com.baryapp.baryapp.Inicio;
+import com.baryapp.baryapp.Principal;
 import com.baryapp.baryapp.R;
 
 public class Fumar extends Fragment implements View.OnClickListener{
@@ -37,7 +38,7 @@ public class Fumar extends Fragment implements View.OnClickListener{
     @Override
     public void onClick(View v) {
         getActivity().finish();
-        Intent principal = new Intent(getActivity().getBaseContext(), Inicio.class);
+        Intent principal = new Intent(getActivity().getBaseContext(), Principal.class);
         startActivity(principal);
     }
 }

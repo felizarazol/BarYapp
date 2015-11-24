@@ -66,8 +66,8 @@
             </intent-filter>
         </activity>
         <activity
-            android:name=".MainActivity"
-            android:label="@string/title_activity_main"
+            android:name=".Principal"
+            android:label="Principal"
             android:theme="@style/Theme.AppCompat.Light.NoActionBar" >
         </activity>
     </application>

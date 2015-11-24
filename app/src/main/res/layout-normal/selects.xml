@@ -10,6 +10,7 @@
         android:name="com.baryapp.baryapp.fragments.BarODiscoteca"
         android:id="@+id/fragmentSelects"
         android:layout_width="match_parent"
-        android:layout_height="match_parent" />
+        android:layout_height="match_parent"
+        tools:layout="@layout/fragment_bar_odiscoteca" />
 
 </RelativeLayout>
