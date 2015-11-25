@@ -156,7 +156,7 @@ public class Inicio extends Activity implements View.OnClickListener{
                 startActivity(registro);
             case R.id.btn_entrar:
                 finish();
-                Intent entrar = new Intent(Inicio.this, Registro.class);
+                Intent entrar = new Intent(Inicio.this, Principal.class);
                 startActivity(entrar);
             break;
         }

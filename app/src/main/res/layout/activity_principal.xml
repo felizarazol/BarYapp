@@ -6,16 +6,53 @@
     android:weightSum="1">
 
     <HorizontalScrollView
-        android:layout_width="match_parent"
-        android:layout_height="195dp"
-        android:id="@+id/horizontalScrollView">
-
-        <ImageView
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/horizontalScrollView"
+        >
+        <LinearLayout
+            android:orientation="horizontal"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:id="@+id/imv1"
-            android:src="@drawable/btn_cerveza"
-            android:layout_gravity="center_horizontal" />
+            android:weightSum="100">
+            <ImageView
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:id="@+id/imv_opcion_1"
+                android:src="@drawable/btn_cerveza"
+                android:layout_gravity="center_horizontal"
+                android:layout_weight="20"
+                />
+            <ImageView
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:id="@+id/imv_opcion_2"
+                android:src="@drawable/btn_cerveza"
+                android:layout_gravity="center_horizontal"
+                android:layout_weight="20"/>
+            <ImageView
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:id="@+id/imv_opcion_3"
+                android:src="@drawable/btn_cerveza"
+                android:layout_gravity="center_horizontal"
+                android:layout_weight="20"/>
+            <ImageView
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:id="@+id/imv_opcion_4"
+                android:src="@drawable/btn_cerveza"
+                android:layout_gravity="center_horizontal"
+                android:layout_weight="20"/>
+            <ImageView
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:id="@+id/imv_opcion_5"
+                android:src="@drawable/btn_cerveza"
+                android:layout_gravity="center_horizontal"
+                android:layout_weight="20"/>
+
+        </LinearLayout>
     </HorizontalScrollView>
 
     <ImageView
@@ -24,6 +61,7 @@
         android:id="@+id/btCercaDeMi"
         android:layout_gravity="center_horizontal"
         android:src="@drawable/btn_cercademi"
+        android:layout_marginTop="40dp"
         />
     <ImageView
         android:layout_width="wrap_content"
